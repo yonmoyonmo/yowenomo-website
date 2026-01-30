@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CRPG Grid Renderer</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="layout">
+      <!-- 상단 헤더: 제목 + 미니맵 -->
+      <header class="header">
+        <div class="title">CRPG Grid Renderer</div>
+        <div class="kb-hint">Move: WASD / Arrow keys · Turn: Q/E</div>
+        <div class="minimap-slot header-map">
+          <canvas id="minimap" width="120" height="120"></canvas>
+        </div>
+      </header>
+      <!-- 게임 화면 캔버스 -->
+      <section class="view">
+        <canvas id="view" width="640" height="480"></canvas>
+        <div id="debug" class="debug"></div>
+      </section>
+      <!-- 하단 컨트롤 패널 -->
+      <section class="panel">
+        <div class="panel-top">
+          <div class="panel-label">Controls</div>
+        </div>
+        <div class="panel-controls">
+          <!-- D-pad -->
+          <div class="dpad" role="group" aria-label="D-pad">
+            <button data-action="forward" class="btn dpad-btn up" aria-label="Forward">
+              <img src="/assets/ui/dpad_up.png" data-up="/assets/ui/dpad_up.png" data-down="/assets/ui/dpad_up_down.png" alt="" />
+            </button>
+            <button data-action="left" class="btn dpad-btn left" aria-label="Turn left">
+              <img src="/assets/ui/dpad_left.png" data-up="/assets/ui/dpad_left.png" data-down="/assets/ui/dpad_left_down.png" alt="" />
+            </button>
+            <button data-action="right" class="btn dpad-btn right" aria-label="Turn right">
+              <img src="/assets/ui/dpad_right.png" data-up="/assets/ui/dpad_right.png" data-down="/assets/ui/dpad_right_down.png" alt="" />
+            </button>
+            <button data-action="back" class="btn dpad-btn down" aria-label="Back">
+              <img src="/assets/ui/dpad_down.png" data-up="/assets/ui/dpad_down.png" data-down="/assets/ui/dpad_down_down.png" alt="" />
+            </button>
+          </div>
+          <!-- A/B 버튼 -->
+          <div class="ab">
+            <button data-action="a" class="btn ab-btn a" aria-label="A button">
+              <img src="/assets/ui/btn_a.png" data-up="/assets/ui/btn_a.png" data-down="/assets/ui/btn_a_down.png" alt="A" />
+            </button>
+            <button data-action="b" class="btn ab-btn b" aria-label="B button">
+              <img src="/assets/ui/btn_b.png" data-up="/assets/ui/btn_b.png" data-down="/assets/ui/btn_b_down.png" alt="B" />
+            </button>
+          </div>
+        </div>
+      </section>
+    </main>
+    <!-- 스페셜 타일 모달 -->
+    <div id="modal" class="modal hidden" role="dialog" aria-modal="true">
+      <div class="modal-frame">
+        <button id="modal-close" class="modal-close" aria-label="Close">X</button>
+        <h2 id="modal-title"></h2>
+        <img id="modal-image" alt="" />
+        <p id="modal-body"></p>
+      </div>
+    </div>
+    <script type="module" src="/dist/main.js"></script>
+  </body>
+</html>

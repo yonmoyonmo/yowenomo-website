@@ -1,0 +1,259 @@
+/* 전역 폰트/배경 설정 */
+:root {
+  font-family: "Courier New", monospace;
+  background: #0b1117;
+  color: #e6e6e6;
+}
+
+html,
+body {
+  /* 화면을 꽉 채우고 스크롤 제거 */
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  background: #0b1117;
+}
+
+body {
+  /* 중앙 정렬 래퍼 */
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+}
+
+/* 전체 레이아웃: 헤더 / 뷰 / 패널 */
+.layout {
+  width: 100%;
+  height: 100vh;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  gap: 12px;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.header {
+  /* 상단 제목 + 미니맵 영역 */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  background: #1c2430;
+  padding: 0 12px;
+  min-height: 56px;
+}
+
+.title {
+  font-size: 16px;
+  letter-spacing: 0.08em;
+}
+
+.kb-hint {
+  /* 데스크톱 키보드 안내(필요 시 표시) */
+  font-size: 12px;
+  color: #b8c0c8;
+  display: none;
+}
+
+.view {
+  /* 게임 화면 영역 */
+  position: relative;
+  width: 100%;
+  min-height: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #121821;
+}
+
+#view {
+  /* 4:3 비율 유지 캔버스 */
+  width: auto;
+  height: 100%;
+  max-height: 100%;
+  max-width: calc(100% - 32px);
+  aspect-ratio: 4 / 3;
+  background: #111820;
+  image-rendering: pixelated;
+}
+
+.debug {
+  /* 디버그 오버레이 텍스트 */
+  position: absolute;
+  left: 16px;
+  bottom: 16px;
+  font-size: 12px;
+  color: #e6e6e6;
+  background: rgba(0, 0, 0, 0.35);
+  padding: 6px 8px;
+  white-space: pre;
+}
+
+.panel {
+  /* 하단 컨트롤 패널 */
+  background: #18212a;
+  padding: 8px 12px 12px;
+  display: grid;
+  gap: 12px;
+  font-size: 14px;
+}
+
+.panel-top {
+  /* 패널 상단 라벨 영역 */
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  padding-top: 4px;
+}
+
+.minimap-slot {
+  /* 미니맵 박스 */
+  width: 120px;
+  height: 120px;
+  background: #111820;
+  padding: 8px;
+}
+
+.header-map {
+  padding: 4px;
+}
+
+#minimap {
+  /* 미니맵 캔버스 */
+  width: 100%;
+  height: 100%;
+  image-rendering: pixelated;
+  display: block;
+}
+
+.panel-controls {
+  /* D-pad + A/B 버튼 배치 */
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 16px;
+  padding-bottom: 4px;
+}
+
+.dpad {
+  /* 십자 방향 버튼 */
+  position: relative;
+  width: 80px;
+  height: 80px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.dpad-btn {
+  /* 방향 버튼 기본 스타일 */
+  width: 28px;
+  height: 28px;
+  border: none;
+  background: #111820;
+}
+
+.dpad-btn img,
+.ab-btn img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  image-rendering: pixelated;
+}
+
+.dpad-btn.up { grid-column: 2; grid-row: 1; }
+.dpad-btn.left { grid-column: 1; grid-row: 2; }
+.dpad-btn.right { grid-column: 3; grid-row: 2; }
+.dpad-btn.down { grid-column: 2; grid-row: 3; }
+
+.ab {
+  /* A/B 버튼 그룹 */
+  display: grid;
+  gap: 10px;
+  justify-items: center;
+}
+
+.ab-btn {
+  /* 원형 버튼 */
+  width: 48px;
+  height: 48px;
+  border-radius: 999px;
+  border: none;
+  background: #111820;
+}
+
+.btn {
+  /* 공통 버튼 */
+  padding: 0;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+.modal {
+  /* 전체화면 모달 오버레이 */
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 10;
+}
+
+.modal.hidden {
+  display: none;
+}
+
+.modal-frame {
+  /* 모달 프레임(픽셀아트 교체 가능) */
+  width: min(720px, 92vw);
+  min-height: 320px;
+  background: #111820;
+  padding: 20px;
+  position: relative;
+  color: #e6e6e6;
+  background-image: url("/assets/modal/frame.png");
+  background-size: 100% 100%;
+}
+
+.modal-frame img {
+  width: 100%;
+  max-height: 320px;
+  object-fit: contain;
+  display: block;
+  margin: 12px 0;
+  background: #0b1117;
+}
+
+.modal-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 36px;
+  height: 36px;
+  border: none;
+  background: #111820;
+  color: #e6e6e6;
+  cursor: pointer;
+}
+
+@media (max-width: 720px) {
+  /* 모바일 레이아웃 보정 */
+  .layout {
+    grid-template-rows: auto minmax(0, 1fr) auto;
+  }
+  .panel-top {
+    flex-direction: row;
+    align-items: center;
+  }
+  .minimap-slot {
+    width: 96px;
+    height: 96px;
+  }
+  .panel-controls {
+    grid-template-columns: 1fr auto;
+  }
+}
